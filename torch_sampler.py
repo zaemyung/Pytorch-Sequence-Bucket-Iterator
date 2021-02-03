@@ -87,7 +87,7 @@ class BySequenceLengthSampler(Sampler):
     def element_to_bucket_id(self, x, seq_length):
 
         valid_buckets = (seq_length >= self.buckets_min)*(seq_length < self.buckets_max)
-        bucket_id = valid_buckets.nonzero()[0].item()
+        bucket_id = torch.nonzero(valid_buckets, as_tuple=True)[0].item()
 
         return bucket_id
     
